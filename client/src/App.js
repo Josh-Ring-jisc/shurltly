@@ -48,7 +48,8 @@ function App() {
           </p>
 
           <p>
-            Shortened url: <a href={data.short}>{data.short}</a>
+            Shortened url:{' '}
+            <a href={`http://localhost:5000/${data.short}`}>{data.short}</a>
           </p>
         </div>
       )}
