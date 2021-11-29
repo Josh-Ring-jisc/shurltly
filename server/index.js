@@ -34,10 +34,7 @@ app.post('/shortenUrl', async (req, res) => {
 });
 
 app.get('/:shortUrl', async (req, res) => {
-  console.log(req);
   const url = await urls.findOne({ short: req.params.shortUrl });
-
-  console.log(url);
 
   if (url == null) res.sendStatus(404);
 
