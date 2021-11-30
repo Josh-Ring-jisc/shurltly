@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import FormLabel from '@mui/material/FormLabel';
+import Button from '@mui/material/Button';
+import { visuallyHidden } from '@mui/utils';
+
 function App() {
   const [url, setUrl] = useState('');
   const [data, setData] = useState(null);
@@ -27,22 +33,45 @@ function App() {
   };
 
   return (
-    <>
+    <Container>
       <h1>Shurltly</h1>
       <form onSubmit={handleFormSubmit}>
-        <label htmlFor="url">Url</label>
-        <input
-          type="url"
-          id="url"
-          required
-          value={url}
-          onChange={handleChange}
-        />
-        <button type="submit">Shorten</button>
+        <Container
+          sx={{
+            display: 'grid',
+            gap: 1,
+            gridTemplateRows: 'repeat(3, 1fr)',
+            width: '40%',
+            p: '1em',
+          }}
+        >
+          <FormLabel htmlFor="url" sx={visuallyHidden}>
+            Url
+          </FormLabel>
+          <TextField
+            type="url"
+            id="url"
+            required
+            placeholder="Url"
+            value={url}
+            onChange={handleChange}
+          />
+          <Button type="submit" variant="contained">
+            Shurlten
+          </Button>
+        </Container>
       </form>
 
       {data && (
-        <div>
+        <Container
+          sx={{
+            display: 'grid',
+            gap: 1,
+            gridTemplateRows: 'repeat(3, 1fr)',
+            width: '40%',
+            p: '1em',
+          }}
+        >
           <p>
             Full url: <a href={data.full}>{data.full}</a>
           </p>
@@ -51,9 +80,9 @@ function App() {
             Shortened url:{' '}
             <a href={`http://localhost:5000/${data.short}`}>{data.short}</a>
           </p>
-        </div>
+        </Container>
       )}
-    </>
+    </Container>
   );
 }
 
