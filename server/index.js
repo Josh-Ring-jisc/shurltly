@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import urls from './models/urls.js';
+import dotenv from 'dotenv';
 
 const app = express();
 
@@ -10,12 +11,16 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const CONNECTION_URL =
-  'mongodb+srv://chrisC:PlutoBlue4$@cluster0.o7kyo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+dotenv.config();
+
+const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
 
 mongoose
-  .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(CONNECTION_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() =>
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
   )
