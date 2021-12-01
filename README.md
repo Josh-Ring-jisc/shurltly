@@ -7,13 +7,7 @@ Steps to run Shurltly as a containerized app using Docker:
 git clone https://github.com/christocarr/shurltly.git
 ```
 
-2. build images for server and client
+2. build images for server and client & run
 ```
-docker build -t "react-app" ./client/
-docker build -t "server" ./server/
-```
-
-3. run docker-compose
-```
-docker-compose up
+docker-compose build && docker-compose up
 ```
